@@ -10,10 +10,10 @@
         class="bg-white p-6 rounded shadow flex flex-col items-center"
       >
         <img
-          :src="artist.image"
-          :alt="artist.name"
-          class="rounded-full mb-4 w-32 h-32 object-cover border-2 border-indigo-600"
-        />
+            :src="artist.image || 'https://randomuser.me/api/portraits/lego/1.jpg'"
+            alt="Profilbild"
+            class="w-10 h-10 rounded-full object-cover border border-indigo-400"
+          />
         <h2 class="font-semibold text-xl mb-2">{{ artist.name }}</h2>
         <p class="text-gray-600 mb-4">{{ artist.style }}</p>
         <NuxtLink

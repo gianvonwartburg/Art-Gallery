@@ -26,9 +26,16 @@
         :key="artist.id"
         class="flex items-center justify-between mb-2 bg-white p-2 rounded shadow"
       >
-        <div>
-          <span class="font-semibold">{{ artist.name }}</span>
-          <span class="text-gray-500 text-sm">({{ artist.style }})</span>
+        <div class="flex items-center gap-3">
+          <img
+            :src="artist.image || 'https://randomuser.me/api/portraits/lego/1.jpg'"
+            alt="Profilbild"
+            class="w-10 h-10 rounded-full object-cover border border-indigo-400"
+          />
+          <div>
+            <span class="font-semibold">{{ artist.name }}</span>
+            <span class="text-gray-500 text-sm">({{ artist.style }})</span>
+          </div>
         </div>
         <div>
           <button @click="editArtist(artist)" class="text-indigo-600 mx-1">

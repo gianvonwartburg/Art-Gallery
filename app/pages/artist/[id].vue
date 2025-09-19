@@ -6,10 +6,10 @@
     <div v-if="artist">
       <div class="flex items-center gap-6 mb-8">
         <img
-          :src="artist.image"
-          :alt="artist.name"
-          class="rounded-full w-32 h-32 object-cover border-2 border-indigo-600"
-        />
+            :src="artist.image || 'https://randomuser.me/api/portraits/lego/1.jpg'"
+            alt="Profilbild"
+            class="w-10 h-10 rounded-full object-cover border border-indigo-400"
+          />
         <div>
           <h1 class="text-3xl font-bold text-indigo-700 mb-2">
             {{ artist.name }}
@@ -19,6 +19,9 @@
       </div>
       <h2 class="text-xl font-semibold mb-4">
         Kunstwerke von {{ artist.name }}
+      </h2>
+      <h2 class="text-xl font-semibold mb-4">
+        TODO weitere Details zum Künstler anzeigen
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div
