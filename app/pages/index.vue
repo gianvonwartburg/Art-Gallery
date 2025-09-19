@@ -28,24 +28,16 @@
 </template>
 
 <script setup>
-const artists = [
-  {
-    id: 1,
-    name: "Anna Müller",
-    style: "Moderne Malerei & abstrakte Kunst",
-    image: "https://source.unsplash.com/200x200/?artist,painting",
-  },
-  {
-    id: 2,
-    name: "Max Schmidt",
-    style: "Skulpturen & Installationen",
-    image: "https://source.unsplash.com/200x200/?art,sculpture",
-  },
-  {
-    id: 3,
-    name: "Sofia Becker",
-    style: "Fotografie & digitale Kunst",
-    image: "https://source.unsplash.com/200x200/?gallery,artwork",
-  },
-];
+import { ref, onMounted } from "vue";
+
+const artists = ref([]);
+
+onMounted(async () => {
+  try {
+    const res = await fetch("/api/artists");
+    artists.value = await res.json();
+  } catch (e) {
+    artists.value = [];
+  }
+});
 </script>

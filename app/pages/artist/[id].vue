@@ -43,67 +43,23 @@
 
 <script setup>
 import { useRoute } from "vue-router";
+import { ref, onMounted } from "vue";
 
 const route = useRoute();
-const id = Number(route.params.id);
+const id = route.params.id;
+const artist = ref(null);
 
-// Beispiel-Daten (später aus API oder Store laden)
-const artists = [
-  {
-    id: 1,
-    name: "Anna Müller",
-    style: "Moderne Malerei & abstrakte Kunst",
-    image: "https://source.unsplash.com/200x200/?artist,painting",
-    artworks: [
-      {
-        id: 1,
-        title: "Farbenmeer",
-        image: "https://source.unsplash.com/400x300/?abstract,painting",
-      },
-      {
-        id: 2,
-        title: "Lichtspiel",
-        image: "https://source.unsplash.com/400x300/?modern,art",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "Max Schmidt",
-    style: "Skulpturen & Installationen",
-    image: "https://source.unsplash.com/200x200/?art,sculpture",
-    artworks: [
-      {
-        id: 1,
-        title: "Steinzeit",
-        image: "https://source.unsplash.com/400x300/?sculpture,stone",
-      },
-      {
-        id: 2,
-        title: "Metallträume",
-        image: "https://source.unsplash.com/400x300/?metal,sculpture",
-      },
-    ],
-  },
-  {
-    id: 3,
-    name: "Sofia Becker",
-    style: "Fotografie & digitale Kunst",
-    image: "https://source.unsplash.com/200x200/?gallery,artwork",
-    artworks: [
-      {
-        id: 1,
-        title: "Stadtlichter",
-        image: "https://source.unsplash.com/400x300/?city,photography",
-      },
-      {
-        id: 2,
-        title: "Naturblick",
-        image: "https://source.unsplash.com/400x300/?nature,photo",
-      },
-    ],
-  },
-];
-
-const artist = artists.find((a) => a.id === id);
+onMounted(async () => {
+  try {
+    const res = await fetch(`/api/artists`);
+    const data = await res.json();
+    artist.value = data.find((a) => String(a.id) === String(id));
+  } catch (e) {
+    artist.value = null;
+  }
+});
 </script>
+
+<style scoped>
+/* Fügen Sie hier Ihre benutzerdefinierten Stile hinzu */
+</style>
